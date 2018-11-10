@@ -1,4 +1,6 @@
-namespace Dictionary.App.ViewModels
+using System;
+
+namespace Dictionary.App.Models
 {
     public class ErrorViewModel
     {

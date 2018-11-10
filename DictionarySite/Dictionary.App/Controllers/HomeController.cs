@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Dictionary.App.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Dictionary.App.Models;
 
 namespace Dictionary.App.Controllers
 {

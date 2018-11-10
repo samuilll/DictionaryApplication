@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-Dictionary.App-651FB094-BC20-4F04-98AE-661747EA70FB</UserSecretsId>
+    <UserSecretsId>aspnet-Dictionary.App-405B1572-8CAB-4872-A5E3-B51ACE5B5CB4</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

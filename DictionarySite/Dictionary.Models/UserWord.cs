@@ -1,6 +1,6 @@
 ﻿namespace Dictionary.Models
 {
-    public class UsersWords
+    public class UserWord
     {
         public string UserId { get; set; }
 

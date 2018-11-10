@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace Dictionary.Models
@@ -7,10 +9,13 @@ namespace Dictionary.Models
     {
         public User()
         {
-            UserWords = new HashSet<UsersWords>();
+            UserWords = new HashSet<UserWord>();
         }
 
-        public IEnumerable<UsersWords> UserWords { get; set; }
+
+
+
+        public IEnumerable<UserWord> UserWords { get; set; }
 
     }
 }

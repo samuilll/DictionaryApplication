@@ -1,16 +1,17 @@
 ﻿using Dictionary.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dictionary.Repository
 {
-    public class DictionaryDbContext : IdentityDbContext
+    public class DictionaryDbContext : IdentityDbContext<User>
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User>  Users { get; set; }
 
         public DbSet<Word> Words { get; set; }
 
-        public DbSet<UsersWords> UsersWords { get; set; }
+        public DbSet<UserWord> UsersWords { get; set; }
 
         public DictionaryDbContext()
         {
@@ -34,7 +35,9 @@ namespace Dictionary.Repository
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<UsersWords>(e =>
+            base.OnModelCreating(builder);
+
+            builder.Entity<UserWord>(e =>
             {
                 e.HasOne(uw => uw.User)
                     .WithMany(u => u.UserWords)
@@ -46,7 +49,7 @@ namespace Dictionary.Repository
 
                 e.HasKey(uw => new {uw.UserId, uw.WordId});
             });
-            base.OnModelCreating(builder);
+       
         }
     }
 }
