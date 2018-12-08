@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dictionary.App.Models;
+using Dictionary.Repository;
 
 namespace Dictionary.App.Controllers
 {
@@ -38,6 +39,15 @@ namespace Dictionary.App.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public ActionResult All()
+        {
+            var db = new DictionaryDbContext();
+
+            var model = db.Words.ToList();
+
+            return View(model);
         }
     }
 }
