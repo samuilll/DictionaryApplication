@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>latest</LangVersion>
+	<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\EnglishDictApp.Data.Models\EnglishDictApp.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\EnglishDictApp.Data\EnglishDictApp.Data.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Data\EnglishDictApp.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Mapping\EnglishDictApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Messaging\EnglishDictApp.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services\EnglishDictApp.Services.csproj" />
+    <ProjectReference Include="..\EnglishDictApp.Web.Infrastructure\EnglishDictApp.Web.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

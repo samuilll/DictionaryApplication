@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.1-beta.61" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\EnglishDictApp.Common\EnglishDictApp.Common.csproj" />
+    <ProjectReference Include="..\..\Data\EnglishDictApp.Data.Common\EnglishDictApp.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\EnglishDictApp.Data.Models\EnglishDictApp.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\EnglishDictApp.Data\EnglishDictApp.Data.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Data\EnglishDictApp.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Mapping\EnglishDictApp.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services.Messaging\EnglishDictApp.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\EnglishDictApp.Services\EnglishDictApp.Services.csproj" />
+  </ItemGroup>
+
+</Project>
