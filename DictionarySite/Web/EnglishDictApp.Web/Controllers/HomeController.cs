@@ -5,6 +5,7 @@
     using EnglishDictApp.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using System.Linq;
 
     public class HomeController : BaseController
     {
@@ -13,21 +14,32 @@
         private ApplicationDbContext context;
         private IRepository<ApplicationUser> userRepo;
         private IRepository<ApplicationRole> roleRepo;
-
-        public HomeController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, ApplicationDbContext context, IRepository<ApplicationUser> userRepo, IRepository<ApplicationRole> roleRepo)
+        private SignInManager<ApplicationUser> signInManager;
+        public HomeController(UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager,
+            ApplicationDbContext context,
+            IRepository<ApplicationUser> userRepo,
+            IRepository<ApplicationRole> roleRepo,
+            SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.context = context;
             this.userRepo = userRepo;
             this.roleRepo = roleRepo;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
-            var p = userRepo.All();
-
-            return this.View();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.View("LoggedInHomeView");
+            }
+            else
+            {
+                return this.View("AnonymousHomeView");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
