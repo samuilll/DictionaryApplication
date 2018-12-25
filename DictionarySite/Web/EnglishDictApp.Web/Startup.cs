@@ -141,7 +141,7 @@
             {
                 routes.MapRoute(
                name: "AllArticles",
-               template: "AllWords/Page{currentPage}",
+               template: "AllWords/Page{currentPage}/Order-{order}",
                defaults: new { controller = "Words", action = "AllWords" }
               );
 

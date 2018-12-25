@@ -21,11 +21,11 @@
             this.mapper = mapper;
         }
 
-        public IActionResult AllWords(int currentPage=1)
+        public IActionResult AllWords(int currentPage = 1, string order = "createdOn")
         {
             AllWordsViewModel model = new AllWordsViewModel()
             {
-                Words = this.wordsService.All()
+                Words = this.wordsService.All(order)
                 .Skip((currentPage - 1) * WordsPerPage)
                 .Take(WordsPerPage)
                 .ProjectTo<WordInListViewModel>(this.mapper.ConfigurationProvider)
@@ -35,11 +35,17 @@
                 {
                     CurrentPage = currentPage,
                     ItemsPerPage = WordsPerPage,
-                    TotalItems = this.wordsService.All().Count(),
+                    TotalItems = this.wordsService.GetTotalCount(),
                 },
+                Order = order,
             };
 
             return this.View("AllWords", model);
+        }
+
+        public IActionResult Create()
+        {
+            return null;
         }
     }
 }

@@ -8,6 +8,8 @@ namespace EnglishDictApp.Services.Data.Interfaces
 {
     public interface IWordsService
     {
-        IQueryable<Word> All();
+        IQueryable<Word> All(string order);
+
+        int GetTotalCount();
     }
 }

@@ -4,9 +4,15 @@
 @{
     ViewData["Title"] = "AllWords";
 }
-
-<h2>AllWords</h2>
-
+<div class="OrderBy">
+    Order by: @Model.Order.ToUpper()
+    <select name="order" onchange="location = this.options[this.selectedIndex].value;">
+        <option value="" selected disabled >Choose order</option>
+        <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="title"?"titleDescending":"title"})" )>Title</option>
+        <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="createdOn"?"createdOnDescending":"createdOn"})" )>Created On</option>
+        <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="partOfSpeech"?"partOfSpeechDescending":"partOfSpeech"})" )>Part Of Speech</option>
+    </select>
+</div>
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
         <tr>
@@ -34,6 +40,7 @@
 
 
 
-@Html.PageLinks(Model.PagingInfo, x => Url.Action("AllWords", new { currentPage = x}))
+@Html.PageLinks(Model.PagingInfo, x => Url.Action("AllWords", new { currentPage = x, order = Model.Order }))
 
-@Html.ActionLink("Create New Word", "Create", null, new { type = "button", @class = "btn btn-success" })
+@Html.ActionLink("Create New Word", "Create", null, null, new { type = "button", @class = "btn btn-success" })
+

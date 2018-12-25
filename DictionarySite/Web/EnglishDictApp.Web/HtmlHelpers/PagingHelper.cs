@@ -17,7 +17,9 @@
 
             StringWriter writer = new StringWriter();
 
-            for (int i = 1; i <= pagingInfo.TotalPages; i++)
+            for (int i = Math.Max(1, pagingInfo.CurrentPage - 2);
+                     i <= Math.Min(pagingInfo.CurrentPage + 2, pagingInfo.TotalPages);
+                     i++)
             {
                 TagBuilder tag = new TagBuilder("a");
 

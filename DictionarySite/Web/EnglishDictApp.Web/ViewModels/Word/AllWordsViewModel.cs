@@ -10,5 +10,7 @@ namespace EnglishDictApp.Web.ViewModels.Word
         public ICollection<WordInListViewModel> Words { get; set; }
 
         public PagingInfo PagingInfo { get; set; }
+
+        public string Order { get; set; }
     }
 }
