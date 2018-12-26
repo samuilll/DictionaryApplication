@@ -4,10 +4,11 @@
 @{
     ViewData["Title"] = "AllWords";
 }
+@this.TempData["SuccessfullEdit"]
 <div class="OrderBy">
     Order by: @Model.Order.ToUpper()
     <select name="order" onchange="location = this.options[this.selectedIndex].value;">
-        <option value="" selected disabled >Choose order</option>
+        <option value="" selected disabled>Choose order</option>
         <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="title"?"titleDescending":"title"})" )>Title</option>
         <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="createdOn"?"createdOnDescending":"createdOn"})" )>Created On</option>
         <option value="@Url.Action("AllWords", new { currentPage = Model.PagingInfo.CurrentPage, order = Model.Order=="partOfSpeech"?"partOfSpeechDescending":"partOfSpeech"})" )>Part Of Speech</option>
@@ -32,7 +33,9 @@
     <tbody>
         @foreach (var word in Model.Words)
         {
-            @Html.Partial("_WordView", word)
+            word.Order = Model.Order;
+            word.CurrentPage = Model.PagingInfo.CurrentPage;
+            @Html.Partial("_WordView", word);
         }
     </tbody>
 </table>

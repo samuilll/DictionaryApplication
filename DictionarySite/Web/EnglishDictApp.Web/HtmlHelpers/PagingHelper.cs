@@ -4,10 +4,10 @@
     using System.IO;
     using System.Text;
     using System.Text.Encodings.Web;
+
     using EnglishDictApp.Web.ViewModels;
     using Microsoft.AspNetCore.Html;
     using Microsoft.AspNetCore.Mvc.Rendering;
-    using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
     public static class PagingHelper
     {
@@ -22,7 +22,6 @@
                      i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-
 
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml.SetContent(i.ToString());

@@ -5,7 +5,6 @@
     using EnglishDictApp.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
 
     public class HomeController : BaseController
     {
@@ -15,7 +14,9 @@
         private IRepository<ApplicationUser> userRepo;
         private IRepository<ApplicationRole> roleRepo;
         private SignInManager<ApplicationUser> signInManager;
-        public HomeController(UserManager<ApplicationUser> userManager,
+
+        public HomeController(
+            UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
             ApplicationDbContext context,
             IRepository<ApplicationUser> userRepo,

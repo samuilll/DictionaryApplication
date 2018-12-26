@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+
     using EnglishDictApp.Data.Common.Repositories;
     using EnglishDictApp.Data.Models;
     using EnglishDictApp.Services.Data.Interfaces;
@@ -54,9 +56,21 @@
             }
         }
 
+        public async Task<Word> GetByIdAsync(int id)
+        {
+            var word = await this.words.GetByIdAsync(id);
+
+            return word;
+        }
+
         public int GetTotalCount()
         {
             return this.words.All().Count();
+        }
+
+        public void UpdateWord(Word word)
+        {
+             this.words.Update(word);
         }
     }
 }

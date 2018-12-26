@@ -52,7 +52,7 @@
 
             ConfigureUserIdentityRelations(builder);
 
-            ConfiguringOtherRelations(builder);
+            this.ConfiguringOtherRelations(builder);
 
             EntityIndexesConfiguration.Configure(builder);
 

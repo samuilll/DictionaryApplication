@@ -41,6 +41,8 @@
             }
 
             entry.State = EntityState.Modified;
+
+            this.SaveChangesAsync();
         }
 
         public virtual void Delete(TEntity entity)

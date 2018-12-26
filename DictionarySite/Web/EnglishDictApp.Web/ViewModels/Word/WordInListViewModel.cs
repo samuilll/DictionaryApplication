@@ -15,5 +15,9 @@ namespace EnglishDictApp.Web.ViewModels.Word
         public string Meaning { get; set; }
 
         public PartOfSpeech PartOfSpeech { get; set; }
+
+        public string Order { get; set; }
+
+        public int CurrentPage { get; set; }
     }
 }

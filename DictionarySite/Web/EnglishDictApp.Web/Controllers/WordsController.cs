@@ -1,12 +1,16 @@
 ﻿namespace EnglishDictApp.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using EnglishDictApp.Data.Models;
     using EnglishDictApp.Services.Data.Interfaces;
     using EnglishDictApp.Web.ViewModels;
     using EnglishDictApp.Web.ViewModels.Word;
     using global::AutoMapper;
     using global::AutoMapper.QueryableExtensions;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
 
     public class WordsController : BaseController
     {
@@ -46,6 +50,40 @@
         public IActionResult Create()
         {
             return null;
+        }
+
+        public async Task<IActionResult> Edit(int id, string order = "createdOn", int currentPage = 1)
+        {
+            Word word = await this.wordsService.GetByIdAsync(id);
+
+            EditWordViewModel model = this.mapper.Map<EditWordViewModel>(word);
+
+            model.Order = order;
+            model.CurrentPage = currentPage;
+
+           // Task.WaitAll();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditWordViewModel model)
+        {
+            Word word = await this.wordsService.GetByIdAsync(model.Id);
+
+            word.Title = model.Title;
+            word.PartOfSpeech = model.PartOfSpeech;
+            word.Meaning = model.Meaning;
+
+            await Task.Run(() => this.wordsService.UpdateWord(word));
+
+            this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()} {word.Meaning}";
+
+            // Task.WaitAll();
+
+            Thread.Sleep(500);
+
+            return this.RedirectToAction("AllWords", new { order = model.Order, currentPage = model.CurrentPage });
         }
     }
 }

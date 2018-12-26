@@ -8,6 +8,6 @@
     <td>@Html.ActionLink(Model.Title, "Details", new { id = Model.Id })</td>
     <td>@Model.PartOfSpeech</td>
     <td>@Model.Meaning</td>
-    <td>@Html.ActionLink("Edit", "Edit", null, new { id = Model.Id }, new { type = "button", @class = "btn btn-primary" })</td>
+    <td>@Html.ActionLink("Edit", "Edit", null, new { id = Model.Id,order = Model.Order,currentPage = Model.CurrentPage}, new { type = "button", @class = "btn btn-primary" })</td>
     <td>@Html.ActionLink("Delete", "Delete", null, new { id = Model.Id }, new { type = "button", @class = "btn btn-warning" })</td>
 </tr>
