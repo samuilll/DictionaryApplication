@@ -10,9 +10,9 @@
 
     public class WordsService : IWordsService
     {
-        private IRepository<Word> words;
+        private IDeletableEntityRepository<Word> words;
 
-        public WordsService(IRepository<Word> words)
+        public WordsService(IDeletableEntityRepository<Word> words)
         {
             this.words = words;
         }
@@ -68,9 +68,23 @@
             return this.words.All().Count();
         }
 
-        public void UpdateWord(Word word)
+        public async Task Update(Word word)
         {
-             this.words.Update(word);
+            await this.words.Update(word);
         }
+
+        public async Task Add(Word word)
+        {
+                 this.words.Add(word);
+                 await this.words.Update(word);
+        }
+
+        public async Task Delete(Word word)
+        {
+                 this.words.Delete(word);
+                 await this.words.Update(word);
+        }
+
+
     }
 }

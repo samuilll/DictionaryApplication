@@ -13,6 +13,11 @@
             this.CreateMap<Word, WordInListViewModel>().ReverseMap();
 
             this.CreateMap<Word, EditWordViewModel>().ReverseMap();
+
+            this.CreateMap<Word, CreateWordViewModel>().ReverseMap();
+
+            this.CreateMap<Word, DeleteWordViewModel>().ReverseMap();
+
         }
 
     }

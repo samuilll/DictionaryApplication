@@ -32,7 +32,7 @@
             this.DbSet.Add(entity);
         }
 
-        public virtual void Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             var entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)
@@ -42,7 +42,7 @@
 
             entry.State = EntityState.Modified;
 
-            this.SaveChangesAsync();
+            await this.SaveChangesAsync();
         }
 
         public virtual void Delete(TEntity entity)

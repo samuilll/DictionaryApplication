@@ -5,6 +5,8 @@
     ViewData["Title"] = "AllWords";
 }
 @this.TempData["SuccessfullEdit"]
+@this.TempData["SuccessfullCreate"]
+
 <div class="OrderBy">
     Order by: @Model.Order.ToUpper()
     <select name="order" onchange="location = this.options[this.selectedIndex].value;">

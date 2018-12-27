@@ -47,11 +47,6 @@
             return this.View("AllWords", model);
         }
 
-        public IActionResult Create()
-        {
-            return null;
-        }
-
         public async Task<IActionResult> Edit(int id, string order = "createdOn", int currentPage = 1)
         {
             Word word = await this.wordsService.GetByIdAsync(id);
@@ -75,15 +70,53 @@
             word.PartOfSpeech = model.PartOfSpeech;
             word.Meaning = model.Meaning;
 
-            await Task.Run(() => this.wordsService.UpdateWord(word));
+            await Task.Run(() => this.wordsService.Update(word));
 
             this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()} {word.Meaning}";
 
-            // Task.WaitAll();
-
-            Thread.Sleep(500);
+            Task.WaitAll();
 
             return this.RedirectToAction("AllWords", new { order = model.Order, currentPage = model.CurrentPage });
+        }
+
+        public ActionResult Create()
+        {
+            CreateWordViewModel model = new CreateWordViewModel();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateWordViewModel model)
+        {
+            Word word = this.mapper.Map<Word>(model);
+
+            await this.wordsService.Add(word);
+
+
+            this.TempData["SuccessfullCreate"] = $"You have successfully created the word \"{word.Title}\"";
+
+            return this.RedirectToAction("AllWords");
+        }
+
+        public async Task<ActionResult> Delete(int id, string ensure = null, string order = "createdOn", int currentPage = 1)
+        {
+
+           Word word = await this.wordsService.GetByIdAsync(id);
+           DeleteWordViewModel model = this.mapper.Map<DeleteWordViewModel>(word);
+            model.Order = order;
+            model.CurrentPage = currentPage;
+
+            if (ensure == null)
+            {
+                 return this.View(model);
+            }
+
+           await this.wordsService.Delete(word);
+
+           this.TempData["SuccessfullDelete"] = $"You have successfully deleted the word \"{word.Title}\"";
+
+           return this.RedirectToAction("AllWords", new { order = model.Order, currentPage = model.CurrentPage });
         }
     }
 }

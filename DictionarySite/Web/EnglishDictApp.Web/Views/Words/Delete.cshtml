@@ -1,0 +1,14 @@
+﻿@model EnglishDictApp.Web.ViewModels.Word.DeleteWordViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Article</h2>
+
+<div class="well">
+    <span class="text-warning">Are you sure you want to delete @Model.Title?</span>
+    <hr />
+    @Html.ActionLink("Back to all", "AllWords", new { order = Model.Order, currentPage = Model.CurrentPage }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Delete", "Delete", new { ensure = "yes", order = Model.Order,currentPage = Model.CurrentPage }, new { @class = "btn btn-primary" })
+</div>

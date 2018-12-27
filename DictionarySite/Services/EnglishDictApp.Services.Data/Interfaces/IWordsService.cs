@@ -13,6 +13,10 @@
 
         Task<Word> GetByIdAsync(int id);
 
-        void UpdateWord(Word word);
+        Task Update(Word word);
+
+        Task Add(Word word);
+
+        Task Delete(Word word);
     }
 }
