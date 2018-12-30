@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace EnglishDictApp.Data.Migrations
+﻿namespace EnglishDictApp.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class Question : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

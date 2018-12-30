@@ -33,6 +33,17 @@
                     {
                         <li><a asp-area="" asp-controller="Words" asp-action="AllWords">All words</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="UserWords">My words</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Exams
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Exam" asp-action="Create">Do exam now</a></li>
+                                    <li><a asp-area="" asp-controller="Exam" asp-action="MyExams">My exams</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     }
                 </ul>
                 <partial name="_LoginPartial" />
@@ -51,10 +62,10 @@
     </div>
 
     <environment names="Development">
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
         <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
         <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">

@@ -4,14 +4,16 @@ using EnglishDictApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EnglishDictApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181228110518_ExamTableAdded")]
+    partial class ExamTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,7 +147,34 @@ namespace EnglishDictApp.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Exams");
+                    b.ToTable("Exam");
+                });
+
+            modelBuilder.Entity("EnglishDictApp.Data.Models.ExamStats", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<int>("WordId");
+
+                    b.Property<int>("ExamId");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.HasKey("UserId", "WordId", "ExamId");
+
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("WordId");
+
+                    b.ToTable("ExamStats");
                 });
 
             modelBuilder.Entity("EnglishDictApp.Data.Models.Setting", b =>
@@ -171,33 +200,6 @@ namespace EnglishDictApp.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Settings");
-                });
-
-            modelBuilder.Entity("EnglishDictApp.Data.Models.Statistic", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("WordId");
-
-                    b.Property<int>("ExamId");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.HasKey("UserId", "WordId", "ExamId");
-
-                    b.HasIndex("ExamId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("WordId");
-
-                    b.ToTable("Statistic");
                 });
 
             modelBuilder.Entity("EnglishDictApp.Data.Models.UserWord", b =>
@@ -369,7 +371,7 @@ namespace EnglishDictApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("EnglishDictApp.Data.Models.Statistic", b =>
+            modelBuilder.Entity("EnglishDictApp.Data.Models.ExamStats", b =>
                 {
                     b.HasOne("EnglishDictApp.Data.Models.Exam", "Exam")
                         .WithMany("Statistics")

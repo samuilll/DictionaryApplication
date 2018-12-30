@@ -36,5 +36,8 @@ namespace EnglishDictApp.Data.Models
 
         public virtual IEnumerable<UserWord> UserWords { get; set; }
 
+        public virtual IEnumerable<Statistic> Statistics { get; set; }
+
+        public virtual IEnumerable<Exam> Exams { get; set; }
     }
 }

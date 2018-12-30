@@ -1,7 +1,5 @@
 ﻿namespace EnglishDictApp.Web
 {
-    using System.Reflection;
-    using AutoMapper;
     using EnglishDictApp.Data;
     using EnglishDictApp.Data.Common;
     using EnglishDictApp.Data.Common.Repositories;
@@ -10,9 +8,7 @@
     using EnglishDictApp.Data.Seeding;
     using EnglishDictApp.Services.Data;
     using EnglishDictApp.Services.Data.Interfaces;
-    using EnglishDictApp.Services.Mapping;
     using EnglishDictApp.Services.Messaging;
-    using EnglishDictApp.Web.ViewModels.Account;
     using global::AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -68,6 +64,9 @@
                     options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
                 });
 
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession();
+
             services
                 .ConfigureApplicationCookie(options =>
                 {
@@ -95,12 +94,14 @@
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
+            services.AddScoped<IWordsService, WordsService>();
+            services.AddScoped<IExamService, ExamService>();
+
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            services.AddScoped<IWordsService, WordsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -136,15 +137,13 @@
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                name: "AllArticles",
                template: "AllWords/Page{currentPage}/Order-{order}",
-               defaults: new { controller = "Words", action = "AllWords" }
-              );
-
+               defaults: new { controller = "Words", action = "AllWords" });
 
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });

@@ -95,9 +95,35 @@
                 e.HasKey(uw => new { uw.UserId, uw.WordId });
             });
 
+            builder.Entity<Statistic>(e =>
+            {
+                e.HasKey(st => new { st.UserId, st.WordId, st.ExamId });
+
+                e.HasOne(st => st.User)
+                .WithMany(u => u.Statistics)
+                .HasForeignKey(st => st.UserId);
+
+                e.HasOne(st => st.Exam)
+                .WithMany(ex => ex.Statistics)
+                .HasForeignKey(st => st.ExamId);
+
+                e.HasOne(st => st.Word)
+                .WithMany(w => w.Statistics)
+                .HasForeignKey(st => st.WordId);
+            });
+
             builder.Entity<Word>(e =>
             {
                 e.ToTable("Words");
+            });
+
+            builder.Entity<Exam>(e =>
+            {
+                e.HasOne(ex => ex.User)
+                .WithMany(u => u.Exams)
+                .HasForeignKey(ex => ex.UserId);
+
+                e.ToTable("Exams");
             });
         }
 

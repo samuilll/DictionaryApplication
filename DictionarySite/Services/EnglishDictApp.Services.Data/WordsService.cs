@@ -7,6 +7,7 @@
     using EnglishDictApp.Data.Common.Repositories;
     using EnglishDictApp.Data.Models;
     using EnglishDictApp.Services.Data.Interfaces;
+    using EnglishDictApp.Services.LINQHelpers;
 
     public class WordsService : IWordsService
     {
@@ -84,7 +85,5 @@
                  this.words.Delete(word);
                  await this.words.Update(word);
         }
-
-
     }
 }

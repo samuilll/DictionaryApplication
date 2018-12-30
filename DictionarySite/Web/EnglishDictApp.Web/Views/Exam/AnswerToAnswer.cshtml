@@ -1,0 +1,27 @@
+﻿@model EnglishDictApp.Web.ViewModels.Exam.ExamAnswerViewModel
+
+@if (Model.IsCurrentAnswerRight)
+{
+    <div class="answer">
+        You're getting better and better!
+    </div>
+    Model.RightAnswers += 1;
+}
+else
+{
+    <div class="answer">
+        Next time you will be better!
+    </div>
+    <div>
+        @Model.CurrentQuestion.Title
+    </div>
+}
+
+<div class="answer-footer">
+    Current exam status:
+    <div class="answer-footer-first">
+        @Model.RightAnswers out of @Model.CurrentQuestionSequelNumber
+    </div>
+</div>
+
+@Html.ActionLink("BackToExam", "AskQuestion", "Exam", new  {isRightAnswer = Model.IsCurrentAnswerRight },new { @class = "btn btn-primary" })

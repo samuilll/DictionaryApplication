@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using EnglishDictApp.Data.Common.Models;
+    using EnglishDictApp.Data.Models.Enums;
 
     public class Word : BaseDeletableModel<int>
     {
@@ -25,5 +26,10 @@
 
         [Required]
         public PartOfSpeech PartOfSpeech { get; set; }
+
+        public Difficulty WordDifficulty { get; set; }
+
+        public virtual IEnumerable<Statistic> Statistics { get; set; }
+
     }
 }

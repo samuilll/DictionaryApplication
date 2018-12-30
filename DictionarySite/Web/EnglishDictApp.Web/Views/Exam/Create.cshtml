@@ -1,0 +1,72 @@
+﻿@model EnglishDictApp.Web.ViewModels.Exam.ExamCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Please select your exam's parameters</h2>
+
+
+@using (Html.BeginForm("Create","Exam"))
+{
+    @*@Html.AntiForgeryToken()*@
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberOfQuestions, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NumberOfQuestions, new { htmlAttributes = new { @class = "form-control", @type = "number", step = "1", min="1", max = Model.TotalWordsCount } })
+            @Html.ValidationMessageFor(model => model.NumberOfQuestions, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FromWord, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FromWord, new { htmlAttributes = new { @class = "form-control", @type = "number", value = "1", step = "1", min = "1", max = Model.TotalWordsCount } })
+            @Html.ValidationMessageFor(model => model.FromWord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ToWord, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ToWord, new { htmlAttributes = new { @class = "form-control", @type = "number", value = "1", step = "1", min = "1", max = Model.TotalWordsCount } })
+            @Html.ValidationMessageFor(model => model.ToWord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExamDifficulty, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ExamDifficulty",
+                                new SelectList(Model.PossibleDiffucultyLevels),
+                                new { @class = "form-control" })
+            <br />
+            @Html.ValidationMessageFor(model => model.ExamDifficulty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Order",
+                                new SelectList(Model.PossibleOrderChoices),
+                                new { @class = "form-control" })
+            <br />
+            @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Start exam" class="btn btn-default" />
+            @Html.ActionLink("Back to home", "Index", "Home", new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+

@@ -1,4 +1,4 @@
-﻿namespace EnglishDictApp.Web.HtmlHelpers
+﻿namespace EnglishDictApp.Web.Helpers.HtmlHelpers
 {
     using System;
     using System.IO;

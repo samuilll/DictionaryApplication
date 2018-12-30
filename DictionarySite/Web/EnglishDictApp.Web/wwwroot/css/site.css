@@ -58,3 +58,24 @@ textarea {
     padding-bottom:20px;
     padding-top:20px;
 }
+
+.question {
+    color: #62c02a;
+}
+
+.answer {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    font-size: 30px;
+    color: #a7cf49;
+}
+
+.answer-footer {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.answer-footer-first {
+    color: #bebe62;
+    font-size: 24px;
+}

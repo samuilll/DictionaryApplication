@@ -1,4 +1,5 @@
 ﻿using EnglishDictApp.Data.Models;
+using EnglishDictApp.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,5 +20,7 @@ namespace EnglishDictApp.Web.ViewModels.Word
         public PartOfSpeech PartOfSpeech { get; set; }
 
         public Array PartOfSpeechPossibleValues => Enum.GetValues(typeof(PartOfSpeech));
+
+        public int TotalWordCount { get; set; }
     }
 }

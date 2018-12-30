@@ -1,6 +1,4 @@
-﻿
-
-namespace EnglishDictApp.Data.Models
+﻿namespace EnglishDictApp.Data.Models.Enums
 {
     public enum PartOfSpeech
     {
@@ -14,6 +12,6 @@ namespace EnglishDictApp.Data.Models
         Conjunction = 7,
         Interjection = 8,
         Pronoun = 9,
-        Phrase = 10
+        Phrase = 10,
     }
 }

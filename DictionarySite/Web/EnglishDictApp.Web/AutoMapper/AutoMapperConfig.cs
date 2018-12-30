@@ -3,6 +3,7 @@
     using System;
 
     using EnglishDictApp.Data.Models;
+    using EnglishDictApp.Web.ViewModels.Exam;
     using EnglishDictApp.Web.ViewModels.Word;
     using global::AutoMapper;
 
@@ -17,6 +18,12 @@
             this.CreateMap<Word, CreateWordViewModel>().ReverseMap();
 
             this.CreateMap<Word, DeleteWordViewModel>().ReverseMap();
+
+            this.CreateMap<Word, WordInExamViewModel>().ReverseMap();
+
+            this.CreateMap<ExamCreateViewModel, ExamInProgressViewModel>().ReverseMap();
+
+            this.CreateMap<ExamInProgressViewModel, ExamAnswerViewModel>().ReverseMap();
 
         }
 

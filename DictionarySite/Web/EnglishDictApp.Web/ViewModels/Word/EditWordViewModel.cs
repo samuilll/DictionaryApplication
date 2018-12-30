@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using EnglishDictApp.Data.Models;
+    using EnglishDictApp.Data.Models.Enums;
 
     public class EditWordViewModel
     {

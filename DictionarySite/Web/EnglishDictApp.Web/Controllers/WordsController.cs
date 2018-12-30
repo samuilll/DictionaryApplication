@@ -57,7 +57,6 @@
             model.CurrentPage = currentPage;
 
            // Task.WaitAll();
-
             return this.View(model);
         }
 
@@ -93,7 +92,6 @@
 
             await this.wordsService.Add(word);
 
-
             this.TempData["SuccessfullCreate"] = $"You have successfully created the word \"{word.Title}\"";
 
             return this.RedirectToAction("AllWords");
@@ -104,10 +102,10 @@
 
            Word word = await this.wordsService.GetByIdAsync(id);
            DeleteWordViewModel model = this.mapper.Map<DeleteWordViewModel>(word);
-            model.Order = order;
-            model.CurrentPage = currentPage;
+           model.Order = order;
+           model.CurrentPage = currentPage;
 
-            if (ensure == null)
+           if (ensure == null)
             {
                  return this.View(model);
             }
