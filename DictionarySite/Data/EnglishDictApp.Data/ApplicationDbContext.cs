@@ -125,6 +125,26 @@
 
                 e.ToTable("Exams");
             });
+
+            builder.Entity<Sentence>(e =>
+            {
+                e.ToTable("Sentences");
+            });
+
+            builder.Entity<WordSentence>(e =>
+            {
+                e.ToTable("SentencesWords");
+
+                e.HasKey(ws => new { ws.SentenceId, ws.WordId });
+
+                e.HasOne(ws => ws.Sentence)
+                .WithMany(s => s.SentenceWords)
+                .HasForeignKey(ws => ws.SentenceId);
+
+                e.HasOne(ws => ws.Word)
+                .WithMany(w => w.WordSentences)
+                .HasForeignKey(ws => ws.WordId);
+            });
         }
 
         private static void ConfigureUserIdentityRelations(ModelBuilder builder)

@@ -4,14 +4,16 @@ using EnglishDictApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EnglishDictApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181230121253_ToDeleteTableWordsInSentences")]
+    partial class ToDeleteTableWordsInSentences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,6 +168,8 @@ namespace EnglishDictApp.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
+                    b.Property<string>("WordTitleToDelete");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
@@ -273,8 +277,7 @@ namespace EnglishDictApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("Transcription")
-                        .HasMaxLength(100);
+                    b.Property<string>("ToDelete");
 
                     b.Property<int>("WordDifficulty");
 

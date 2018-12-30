@@ -10,9 +10,9 @@
 
         public int WordId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
-        public Word Word { get; set; }
+        public virtual Word Word { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

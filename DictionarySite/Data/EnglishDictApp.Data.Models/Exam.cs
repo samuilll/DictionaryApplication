@@ -11,7 +11,7 @@
         [Required]
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Required]
         [Range(maximum: 11500, minimum: 1)]

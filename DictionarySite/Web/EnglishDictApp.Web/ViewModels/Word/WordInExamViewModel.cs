@@ -8,6 +8,7 @@ namespace EnglishDictApp.Web.ViewModels.Word
 {
     public class WordInExamViewModel
     {
+       
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -15,5 +16,7 @@ namespace EnglishDictApp.Web.ViewModels.Word
         public string Meaning { get; set; }
 
         public PartOfSpeech PartOfSpeech { get; set; }
+
+        public IEnumerable<string> Sentences { get; set; }
     }
 }

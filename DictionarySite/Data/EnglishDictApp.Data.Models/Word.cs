@@ -10,10 +10,10 @@
     {
         public Word()
         {
-            this.WordUsers = new HashSet<UserWord>();
+            this.WordUsers = new List<UserWord>();
+            this.WordSentences = new List<WordSentence>();
+            this.Statistics = new List<Statistic>();
         }
-
-        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -22,14 +22,20 @@
         [Required]
         public string Meaning { get; set; }
 
-        public IEnumerable<UserWord> WordUsers { get; set; }
-
         [Required]
         public PartOfSpeech PartOfSpeech { get; set; }
 
+        [Required]
         public Difficulty WordDifficulty { get; set; }
 
+        [MaxLength(100)]
+        public string Transcription { get; set; }
+
+        public virtual IEnumerable<UserWord> WordUsers { get; set; }
+
         public virtual IEnumerable<Statistic> Statistics { get; set; }
+
+        public virtual IEnumerable<WordSentence> WordSentences { get; set; }
 
     }
 }

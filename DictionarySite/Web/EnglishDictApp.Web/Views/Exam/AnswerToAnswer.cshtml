@@ -3,19 +3,29 @@
 @if (Model.IsCurrentAnswerRight)
 {
     <div class="answer">
-        You're getting better and better!
+        Right answer! You're getting better and better!
     </div>
     Model.RightAnswers += 1;
 }
 else
 {
     <div class="answer">
-        Next time you will be better!
-    </div>
-    <div>
-        @Model.CurrentQuestion.Title
+        Wrong answer. Next time you will be better!
     </div>
 }
+
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">@Model.CurrentQuestion.Title</p>
+        <p class="lead">@Model.CurrentQuestion.Meaning</p>
+        @foreach (var sentence in Model.CurrentQuestion.Sentences)
+        {
+            <p class="lead">@sentence</p>
+        }
+        <hr class="my-4">
+        <p>somtehing to write</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
 
 <div class="answer-footer">
     Current exam status:
@@ -24,4 +34,4 @@ else
     </div>
 </div>
 
-@Html.ActionLink("BackToExam", "AskQuestion", "Exam", new  {isRightAnswer = Model.IsCurrentAnswerRight },new { @class = "btn btn-primary" })
+@Html.ActionLink("BackToExam", "AskQuestion", "Exam", new { isRightAnswer = Model.IsCurrentAnswerRight }, new { @class = "btn btn-primary" })
