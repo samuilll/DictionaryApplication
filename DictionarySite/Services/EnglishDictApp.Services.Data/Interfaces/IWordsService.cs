@@ -15,7 +15,9 @@
 
         Task Update(Word word);
 
-        Task Add(Word word);
+        Task Create(Word word);
+
+        Word GetByTitle(string title);
 
         Task Delete(Word word);
     }

@@ -98,6 +98,8 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
             services.AddScoped<IWordsService, WordsService>();
             services.AddScoped<IExamService, ExamService>();
+            services.AddScoped<IMeaningService, MeaningService>();
+            services.AddScoped<ISentenceService, SentenceService>();
 
 
             // Application services

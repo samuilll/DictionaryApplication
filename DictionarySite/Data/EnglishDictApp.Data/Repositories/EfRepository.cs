@@ -27,9 +27,10 @@
 
         public virtual Task<TEntity> GetByIdAsync(params object[] id) => this.DbSet.FindAsync(id);
 
-        public virtual void Add(TEntity entity)
+        public virtual async Task Add(TEntity entity)
         {
             this.DbSet.Add(entity);
+            await this.SaveChangesAsync();
         }
 
         public virtual async Task Update(TEntity entity)
@@ -50,7 +51,7 @@
             this.DbSet.Remove(entity);
         }
 
-        public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
+        public async Task<int> SaveChangesAsync() => await this.Context.SaveChangesAsync();
 
         public void Dispose() => this.Context.Dispose();
     }

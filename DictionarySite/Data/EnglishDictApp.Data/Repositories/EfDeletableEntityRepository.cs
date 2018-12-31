@@ -49,12 +49,12 @@
             base.Delete(entity);
         }
 
-        public void Undelete(TEntity entity)
+        public async Task Undelete(TEntity entity)
         {
             entity.IsDeleted = false;
             entity.DeletedOn = null;
 
-            this.Update(entity);
+            await this.Update(entity);
         }
 
         public override void Delete(TEntity entity)

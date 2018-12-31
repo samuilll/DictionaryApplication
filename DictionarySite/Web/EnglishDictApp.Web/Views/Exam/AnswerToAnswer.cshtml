@@ -17,10 +17,19 @@ else
     <div class="jumbotron">
         <h1 class="display-4">Hello, world!</h1>
         <p class="lead">@Model.CurrentQuestion.Title</p>
-        <p class="lead">@Model.CurrentQuestion.Meaning</p>
-        @foreach (var sentence in Model.CurrentQuestion.Sentences)
+        Meanings
+        @foreach (string meaning in Model.CurrentQuestion.Meanings)
         {
-            <p class="lead">@sentence</p>
+            <ul>
+                <li class="lead">@meaning</li>
+            </ul>
+        }     
+        Examples:
+        @foreach (string sentence in Model.CurrentQuestion.Sentences)
+        {
+            <ul>
+                <li class="lead">@sentence</li>
+            </ul>
         }
         <hr class="my-4">
         <p>somtehing to write</p>

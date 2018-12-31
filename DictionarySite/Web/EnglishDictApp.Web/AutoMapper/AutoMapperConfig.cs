@@ -13,11 +13,18 @@
     {
         public AutoMapperConfig()
         {
-            this.CreateMap<Word, WordInListViewModel>().ReverseMap();
+            this.CreateMap<Word, WordInListViewModel>()
+                .ForMember(dest => dest.Meanings, src => src.MapFrom(w => w.Meanings.Select(m => m.Content).ToList()))
+                .ReverseMap();
 
-            this.CreateMap<Word, EditWordViewModel>().ReverseMap();
+            this.CreateMap<Word, EditWordViewModel>()
+                .ForMember(dest => dest.Meanings, src => src.MapFrom(w => w.Meanings.Select(m => m.Content).ToList()))
+                .ForMember(dest => dest.Sentences, src => src.MapFrom(w => w.WordSentences.Select(ws => ws.Sentence.Content).ToList()))
+                .ReverseMap();
 
-            this.CreateMap<Word, CreateWordViewModel>().ReverseMap();
+            this.CreateMap<CreateWordViewModel, Word>()
+                .ForMember(dest => dest.Meanings, src => src.Ignore())
+                .ReverseMap();
 
             this.CreateMap<Word, DeleteWordViewModel>().ReverseMap();
 
@@ -25,8 +32,9 @@
 
             this.CreateMap<Word, WordInExamViewModel>()
                 .ForMember(dest => dest.Sentences, src => src.MapFrom(w => w.WordSentences.Select(ws => ws.Sentence.Content).ToList()))
+                .ForMember(dest => dest.Meanings, src => src.MapFrom(w => w.Meanings.Select(m => m.Content).ToList()))
                 .ReverseMap();
-            
+
             this.CreateMap<ExamCreateViewModel, ExamInProgressViewModel>().ReverseMap();
 
             this.CreateMap<ExamInProgressViewModel, ExamAnswerViewModel>().ReverseMap();

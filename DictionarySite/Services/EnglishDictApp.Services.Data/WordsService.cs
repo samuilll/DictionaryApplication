@@ -74,16 +74,21 @@
             await this.words.Update(word);
         }
 
-        public async Task Add(Word word)
+        public async Task Create(Word word)
         {
-                 this.words.Add(word);
-                 await this.words.Update(word);
+              await this.words.Add(word);
         }
 
         public async Task Delete(Word word)
         {
                  this.words.Delete(word);
+
                  await this.words.Update(word);
+        }
+
+        public Word GetByTitle(string title)
+        {
+            return this.words.All().FirstOrDefault(w => w.Title == title);
         }
     }
 }

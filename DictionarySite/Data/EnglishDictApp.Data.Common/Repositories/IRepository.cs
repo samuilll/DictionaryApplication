@@ -13,7 +13,7 @@
 
         Task<TEntity> GetByIdAsync(params object[] id);
 
-        void Add(TEntity entity);
+        Task Add(TEntity entity);
 
         Task Update(TEntity entity);
 

@@ -1,6 +1,7 @@
 ﻿using EnglishDictApp.Data.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,10 +14,11 @@ namespace EnglishDictApp.Web.ViewModels.Word
 
         public string Title { get; set; }
 
-        public string Meaning { get; set; }
+        [Required]
+        public IList<string> Meanings { get; set; }
 
         public PartOfSpeech PartOfSpeech { get; set; }
 
-        public IEnumerable<string> Sentences { get; set; }
+        public IList<string> Sentences { get; set; }
     }
 }

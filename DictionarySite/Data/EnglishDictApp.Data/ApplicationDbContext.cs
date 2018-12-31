@@ -115,6 +115,7 @@
             builder.Entity<Word>(e =>
             {
                 e.ToTable("Words");
+                e.HasAlternateKey(w => w.Title);
             });
 
             builder.Entity<Exam>(e =>
@@ -144,6 +145,15 @@
                 e.HasOne(ws => ws.Word)
                 .WithMany(w => w.WordSentences)
                 .HasForeignKey(ws => ws.WordId);
+            });
+
+            builder.Entity<Meaning>(e =>
+            {
+                e.ToTable("Meanings");
+
+                e.HasOne(m => m.Word)
+                .WithMany(w => w.Meanings)
+                .HasForeignKey(m => m.WordId);
             });
         }
 

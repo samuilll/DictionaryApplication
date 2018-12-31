@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace EnglishDictApp.Data.Migrations
+﻿namespace EnglishDictApp.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class IncludeOtherTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace EnglishDictApp.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
                     Meaning = table.Column<string>(nullable: true),
-                    PartOfSpeech = table.Column<int>(nullable: false)
+                    PartOfSpeech = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -42,7 +42,7 @@ namespace EnglishDictApp.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    WordId = table.Column<int>(nullable: false)
+                    WordId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {

@@ -17,15 +17,20 @@
         private const int WordsPerPage = 10;
 
         private IWordsService wordsService;
+        private IMeaningService meaningService;
+        private ISentenceService sentenceService;
+
         private IMapper mapper;
 
-        public WordsController(IWordsService wordsService, IMapper mapper)
+        public WordsController(IWordsService wordsService, IMeaningService meaningService, ISentenceService sentenceService, IMapper mapper)
         {
             this.wordsService = wordsService;
+            this.meaningService = meaningService;
+            this.sentenceService = sentenceService;
             this.mapper = mapper;
         }
 
-        public IActionResult AllWords(int currentPage = 1, string order = "createdOn")
+        public IActionResult AllWords(int currentPage = 1, string order = "title")
         {
             AllWordsViewModel model = new AllWordsViewModel()
             {
@@ -67,11 +72,11 @@
 
             word.Title = model.Title;
             word.PartOfSpeech = model.PartOfSpeech;
-            word.Meaning = model.Meaning;
+            
 
             await Task.Run(() => this.wordsService.Update(word));
 
-            this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()} {word.Meaning}";
+            this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()}";
 
             Task.WaitAll();
 
@@ -90,7 +95,12 @@
         {
             Word word = this.mapper.Map<Word>(model);
 
-            await this.wordsService.Add(word);
+            await this.wordsService.Create(word);
+
+            int wordId = this.wordsService.GetByTitle(model.Title).Id;
+
+            await this.meaningService.CreateMeanings(wordId, model.Meanings);
+            await this.sentenceService.CreateSentences(word.Id, model.Sentences);
 
             this.TempData["SuccessfullCreate"] = $"You have successfully created the word \"{word.Title}\"";
 

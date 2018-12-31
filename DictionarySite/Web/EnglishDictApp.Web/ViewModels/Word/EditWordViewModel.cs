@@ -1,6 +1,7 @@
 ﻿namespace EnglishDictApp.Web.ViewModels.Word
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using EnglishDictApp.Data.Models;
@@ -15,7 +16,9 @@
         public string Title { get; set; }
 
         [Required]
-        public string Meaning { get; set; }
+        public IList<string> Meanings { get; set; }
+
+        public IList<string> Sentences { get; set; }
 
         [Required]
         public PartOfSpeech PartOfSpeech { get; set; }
