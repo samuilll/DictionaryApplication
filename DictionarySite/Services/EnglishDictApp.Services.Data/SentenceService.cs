@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EnglishDictApp.Data.Common.Repositories;
     using EnglishDictApp.Data.Models;
@@ -38,6 +39,28 @@
                 };
 
                 await this.wordsSentences.Add(wordSentence);
+            }
+        }
+
+        public async Task DeleteSentences(IEnumerable<WordSentence> sentences)
+        {
+            foreach (WordSentence wordSentence in sentences)
+            {
+                this.wordsSentences.Delete(wordSentence);
+
+                await this.wordsSentences.Update(wordSentence);
+            }
+        }
+
+        public async Task Update(IList<int> sentenceIds, IList<string> sentenceContents)
+        {
+            for (int i = 0; i < sentenceIds.Count(); i++)
+            {
+                Sentence sentence = await this.sentences.GetByIdAsync(sentenceIds[i]);
+
+                sentence.Content = sentenceContents[i];
+
+                await this.sentences.Update(sentence);
             }
         }
     }

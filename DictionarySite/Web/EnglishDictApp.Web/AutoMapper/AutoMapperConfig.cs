@@ -18,8 +18,8 @@
                 .ReverseMap();
 
             this.CreateMap<Word, EditWordViewModel>()
-                .ForMember(dest => dest.Meanings, src => src.MapFrom(w => w.Meanings.Select(m => m.Content).ToList()))
-                .ForMember(dest => dest.Sentences, src => src.MapFrom(w => w.WordSentences.Select(ws => ws.Sentence.Content).ToList()))
+                .ForMember(dest => dest.Meanings, src => src.MapFrom(w => w.Meanings.ToList()))
+                .ForMember(dest => dest.Sentences, src => src.MapFrom(w => w.WordSentences.Select(ws => ws.Sentence).ToList()))
                 .ReverseMap();
 
             this.CreateMap<CreateWordViewModel, Word>()

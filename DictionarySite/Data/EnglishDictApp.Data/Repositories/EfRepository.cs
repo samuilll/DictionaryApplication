@@ -43,6 +43,8 @@
 
             entry.State = EntityState.Modified;
 
+            this.Context.Update(entity);
+
             await this.SaveChangesAsync();
         }
 

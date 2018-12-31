@@ -1,5 +1,7 @@
 ﻿namespace EnglishDictApp.Web.Controllers
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -72,9 +74,10 @@
 
             word.Title = model.Title;
             word.PartOfSpeech = model.PartOfSpeech;
-            
 
-            await Task.Run(() => this.wordsService.Update(word));
+            await this.wordsService.Update(word);
+            await this.meaningService.Update(model.Meanings.Select(m => m.Id).ToList(), model.Meanings.Select(m => m.Content).ToList());
+            await this.sentenceService.Update(model.Sentences.Select(s => s.Id).ToList(), model.Sentences.Select(s => s.Content).ToList());
 
             this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()}";
 
@@ -120,6 +123,11 @@
                  return this.View(model);
             }
 
+           IEnumerable<WordSentence> sentences = word.WordSentences;
+           IEnumerable<Meaning> meanings = word.Meanings;
+
+           await this.sentenceService.DeleteSentences(sentences);
+           await this.meaningService.DeleteMeanings(meanings);
            await this.wordsService.Delete(word);
 
            this.TempData["SuccessfullDelete"] = $"You have successfully deleted the word \"{word.Title}\"";

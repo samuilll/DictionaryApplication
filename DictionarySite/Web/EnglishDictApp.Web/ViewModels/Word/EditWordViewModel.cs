@@ -16,9 +16,9 @@
         public string Title { get; set; }
 
         [Required]
-        public IList<string> Meanings { get; set; }
+        public IList<Meaning> Meanings { get; set; }
 
-        public IList<string> Sentences { get; set; }
+        public IList<Sentence> Sentences { get; set; }
 
         [Required]
         public PartOfSpeech PartOfSpeech { get; set; }

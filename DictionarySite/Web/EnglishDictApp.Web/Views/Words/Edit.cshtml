@@ -10,60 +10,66 @@
 {
     @*@Html.AntiForgeryToken()*@
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", maxlength = "300" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @for (int i = 0; i < Model.Meanings.Count(); i++)
-    {
         <div class="form-group">
-            @Html.LabelFor(model => model.Meanings[i], htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Meanings[i], 10, 50, new { htmlAttributes = new { @class = "form-control" } })
-                <br />
-                @Html.ValidationMessageFor(model => model.Meanings[i], "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", maxlength = "300" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
 
-    @for (int i = 0; i < Model.Sentences.Count(); i++)
-    {
+        @for (int i = 0; i < Model.Meanings.Count(); i++)
+        {
+            @Html.HiddenFor(model => model.Meanings[i].Id);
+            <div class="form-group">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Meanings[i], htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Meanings[i].Content, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Meanings[i], "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        @for (int i = 0; i < Model.Sentences.Count(); i++)
+        {
+            @Html.HiddenFor(model => model.Sentences[i].Id);
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sentences[i], htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Sentences[i].Content, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Sentences[i], "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Sentences[i], htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PartOfSpeech, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Sentences[i], 10, 50, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("PartOfSpeech",
+                                    new SelectList(Model.PartOfSpeechPossibleValues),
+                                    Model.PartOfSpeech.ToString(),
+                                    new { @class = "form-control" })
                 <br />
-                @Html.ValidationMessageFor(model => model.Sentences[i], "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PartOfSpeech, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.PartOfSpeech, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PartOfSpeech",
-                                new SelectList(Model.PartOfSpeechPossibleValues),
-                                Model.PartOfSpeech.ToString(),
-                                new { @class = "form-control" })
-            <br />
-            @Html.ValidationMessageFor(model => model.PartOfSpeech, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Back to all", "All", null, new { @class = "btn btn-default" })
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-            @Html.ActionLink("Back to all", "All", null, new { @class = "btn btn-default" })
-        </div>
-    </div>
-</div>
 }

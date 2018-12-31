@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EnglishDictApp.Data.Common.Repositories;
     using EnglishDictApp.Data.Models;
@@ -29,6 +30,28 @@
                 };
 
                 await this.meanings.Add(meaning);
+            }
+        }
+
+        public async Task DeleteMeanings(IEnumerable<Meaning> meanings)
+        {
+            foreach (Meaning meaning in meanings)
+            {
+                this.meanings.Delete(meaning);
+
+                await this.meanings.Update(meaning);
+            }
+        }
+
+        public async Task Update(IList<int> meaningIds, IList<string> meaningContents)
+        {
+            for (int i = 0; i < meaningIds.Count(); i++)
+            {
+                Meaning meaning = await this.meanings.GetByIdAsync(meaningIds[i]);
+
+                meaning.Content = meaningContents[i];
+
+                await this.meanings.Update(meaning);
             }
         }
     }

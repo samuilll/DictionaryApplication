@@ -115,7 +115,8 @@
             builder.Entity<Word>(e =>
             {
                 e.ToTable("Words");
-                e.HasAlternateKey(w => w.Title);
+
+                e.HasIndex(w => w.Title).IsUnique(true);
             });
 
             builder.Entity<Exam>(e =>
