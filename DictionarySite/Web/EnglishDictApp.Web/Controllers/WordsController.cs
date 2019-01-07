@@ -77,7 +77,11 @@
 
             await this.wordsService.Update(word);
             await this.meaningService.Update(model.Meanings.Select(m => m.Id).ToList(), model.Meanings.Select(m => m.Content).ToList());
-            await this.sentenceService.Update(model.Sentences.Select(s => s.Id).ToList(), model.Sentences.Select(s => s.Content).ToList());
+
+            if (model.Sentences != null)
+            {
+                await this.sentenceService.Update(model.Sentences.Select(s => s.Id).ToList(), model.Sentences.Select(s => s.Content).ToList());
+            }
 
             this.TempData["SuccessfullEdit"] = $"{word.Title} {word.PartOfSpeech.ToString()}";
 
@@ -102,8 +106,15 @@
 
             int wordId = this.wordsService.GetByTitle(model.Title).Id;
 
-            await this.meaningService.CreateMeanings(wordId, model.Meanings);
-            await this.sentenceService.CreateSentences(word.Id, model.Sentences);
+            if (model.Meanings.Any(m => m != null))
+            {
+                await this.meaningService.CreateMeanings(wordId, model.Meanings.Where(m => m != null).ToList());
+            }
+
+            if (model.Sentences.Any(m => m != null))
+            {
+                await this.sentenceService.CreateSentences(word.Id, model.Sentences.Where(s => s != null).ToList());
+            }
 
             this.TempData["SuccessfullCreate"] = $"You have successfully created the word \"{word.Title}\"";
 
