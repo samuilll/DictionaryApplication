@@ -1,15 +1,15 @@
-﻿using EnglishDictApp.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace EnglishDictApp.Web.ViewModels.Word
+﻿namespace EnglishDictApp.Web.ViewModels.Word
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using EnglishDictApp.Data.Models.Enums;
+
     public class WordInExamViewModel
     {
-       
         public int Id { get; set; }
 
         public string Title { get; set; }

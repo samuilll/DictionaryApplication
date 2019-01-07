@@ -15,15 +15,14 @@ else
 }
 
     <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">@Model.CurrentQuestion.Title</p>
+        <h1 class="display-4">@Model.CurrentQuestion.Title</h1>
         Meanings
         @foreach (string meaning in Model.CurrentQuestion.Meanings)
         {
             <ul>
                 <li class="lead">@meaning</li>
             </ul>
-        }     
+        }
         Examples:
         @foreach (string sentence in Model.CurrentQuestion.Sentences)
         {
@@ -32,15 +31,20 @@ else
             </ul>
         }
         <hr class="my-4">
-        <p>somtehing to write</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        @Html.ActionLink("Continue exam", "AskQuestion", "Exam", new { isRightAnswer = Model.IsCurrentAnswerRight }, new { @class = "btn btn-success" })
     </div>
 
-<div class="answer-footer">
-    Current exam status:
-    <div class="answer-footer-first">
-        @Model.RightAnswers out of @Model.CurrentQuestionSequelNumber
+    <div class="answer-footer row">
+        <div class="answer-footer-left">
+            Current exam status:
+            <div class="answer-footer-left-statistic">
+                @Model.RightAnswers out of @Model.CurrentQuestionSequelNumber
+            </div>
+        </div>
+        <div class="answer-footer-right">
+            Current grade:
+            <div class="answer-footer-right-grade">
+                @Model.Grade.ToString("f2")
+            </div>
+        </div>
     </div>
-</div>
-
-@Html.ActionLink("BackToExam", "AskQuestion", "Exam", new { isRightAnswer = Model.IsCurrentAnswerRight }, new { @class = "btn btn-primary" })

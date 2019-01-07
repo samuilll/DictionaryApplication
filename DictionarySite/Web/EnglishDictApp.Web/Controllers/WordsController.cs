@@ -112,7 +112,6 @@
 
         public async Task<ActionResult> Delete(int id, string ensure = null, string order = "createdOn", int currentPage = 1)
         {
-
            Word word = await this.wordsService.GetByIdAsync(id);
            DeleteWordViewModel model = this.mapper.Map<DeleteWordViewModel>(word);
            model.Order = order;

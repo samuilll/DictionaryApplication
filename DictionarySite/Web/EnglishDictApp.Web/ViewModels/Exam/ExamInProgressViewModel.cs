@@ -1,5 +1,6 @@
 ﻿namespace EnglishDictApp.Web.ViewModels.Exam
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -14,7 +15,7 @@
             this.Statistics = new List<Statistic>();
         }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public Stack<WordInExamViewModel> Words { get; set; }
 
@@ -24,7 +25,18 @@
 
         public int RightAnswers { get; set; }
 
-        public double Grade { get; set; }
+        public double Grade
+        {
+            get
+            {
+                int divider = this.CurrentQuestionSequelNumber != 0 ? this.CurrentQuestionSequelNumber : 1;
+
+                double percent = ((double)this.RightAnswers / divider) * 100;
+
+                return (percent * 0.04) + 2;
+            }
+        }
+
 
         public WordInExamViewModel CurrentQuestion { get; set; }
 

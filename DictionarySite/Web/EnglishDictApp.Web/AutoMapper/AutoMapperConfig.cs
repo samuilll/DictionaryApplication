@@ -39,6 +39,9 @@
 
             this.CreateMap<ExamInProgressViewModel, ExamAnswerViewModel>().ReverseMap();
 
+            this.CreateMap<ExamInProgressViewModel, ExamResultViewModel>().ReverseMap();
+
+            this.CreateMap<ExamResultViewModel, Exam>().ReverseMap();
         }
 
     }

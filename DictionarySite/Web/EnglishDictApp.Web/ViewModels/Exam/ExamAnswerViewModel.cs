@@ -1,13 +1,10 @@
-﻿using EnglishDictApp.Web.ViewModels.Word;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace EnglishDictApp.Web.ViewModels.Exam
+﻿namespace EnglishDictApp.Web.ViewModels.Exam
 {
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
+    using EnglishDictApp.Web.ViewModels.Word;
+
     public class ExamAnswerViewModel
     {
         public int NumberOfQuestions { get; set; }
@@ -15,6 +12,18 @@ namespace EnglishDictApp.Web.ViewModels.Exam
         public int RightAnswers { get; set; }
 
         public WordInExamViewModel CurrentQuestion { get; set; }
+
+        public double Grade
+        {
+            get
+            {
+                int divider = this.CurrentQuestionSequelNumber != 0 ? this.CurrentQuestionSequelNumber : 1;
+
+                double percent = ((double)this.RightAnswers / divider) * 100;
+
+                return (percent * 0.04) + 2;
+            }
+        }
 
         [Required]
         [DisplayName("Answer")]

@@ -1,8 +1,9 @@
 ﻿namespace EnglishDictApp.Web.ViewModels.Word
 {
-    using EnglishDictApp.Data.Models.Enums;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using EnglishDictApp.Data.Models.Enums;
 
     public class WordInListViewModel
     {

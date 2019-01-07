@@ -34,6 +34,7 @@
         public virtual IEnumerable<Statistic> Statistics { get; set; }
 
         public virtual IEnumerable<WordSentence> WordSentences { get; set; }
+
         public virtual IEnumerable<Meaning> Meanings { get; set; }
     }
 }

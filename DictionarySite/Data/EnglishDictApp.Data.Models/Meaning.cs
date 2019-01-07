@@ -1,12 +1,13 @@
-﻿using EnglishDictApp.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace EnglishDictApp.Data.Models
+﻿namespace EnglishDictApp.Data.Models
 {
-   public class Meaning : BaseDeletableModel<int>
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
+
+    using EnglishDictApp.Data.Common.Models;
+
+    public class Meaning : BaseDeletableModel<int>
     {
         [Required]
         public int WordId { get; set; }

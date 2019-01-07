@@ -100,8 +100,6 @@
             services.AddScoped<IExamService, ExamService>();
             services.AddScoped<IMeaningService, MeaningService>();
             services.AddScoped<ISentenceService, SentenceService>();
-
-
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();

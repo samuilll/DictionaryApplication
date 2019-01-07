@@ -1,0 +1,24 @@
+﻿@model EnglishDictApp.Web.ViewModels.Exam.ExamResultViewModel
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h2>Result</h2>
+
+<div>
+
+</div>
+<div>
+    <div class="jumbotron">
+        @*<h1 class="display-4">Hello, world!</h1>*@
+        <p class="lead">Your grade is: @Model.Grade.ToString("f2")</p>
+        <hr class="my-4">
+        <p>@Model.RightAnswers out of @Model.NumberOfQuestions right answers</p>
+        <p class="lead">
+            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-success btn-lg left-button" })
+            @Html.ActionLink("New exam", "Create", "Exam", null, new { @class = "btn btn-danger btn-lg middle-button" })
+            @Html.ActionLink("View statistics", "View", "Statistics", null, new { @class = "btn btn-warning btn-lg right-button" })
+        </p>
+    </div>
+</div>

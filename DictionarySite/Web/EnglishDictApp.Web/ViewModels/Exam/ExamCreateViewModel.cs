@@ -8,6 +8,8 @@
 
     public class ExamCreateViewModel
     {
+        public string UserId { get; set; }
+
         [Required]
         [DisplayName("Questions' number")]
         [DefaultValue(1)]
@@ -23,7 +25,7 @@
         [DefaultValue(1)]
         public int ToWord { get; set; }
 
-        public bool IsValidExam => (this.ToWord - this.FromWord) >= this.NumberOfQuestions;
+        public bool IsValidExam => (this.ToWord - this.FromWord) >= this.NumberOfQuestions-1;
 
         public int TotalWordsCount { get; set; }
 

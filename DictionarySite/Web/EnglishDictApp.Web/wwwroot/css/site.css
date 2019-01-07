@@ -74,8 +74,31 @@ textarea {
     padding-bottom: 30px;
     padding-top: 30px;
 }
-
-.answer-footer-first {
+.answer-footer-left {
+    float:left
+}
+.answer-footer-left-statistic {
     color: #bebe62;
     font-size: 24px;
+}
+
+.answer-footer-right {
+    float:right;
+}
+
+.answer-footer-right-grade {
+    color: #bebe62;
+    font-size: 24px;
+}
+
+left-button {
+    color:aqua
+}
+
+middle-button {
+    color:cadetblue
+}
+
+right-button {
+    scrollbar-track-color;
 }
